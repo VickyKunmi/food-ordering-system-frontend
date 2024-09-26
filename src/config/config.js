@@ -1,6 +1,7 @@
 
 const config = {
-    url: "http://localhost:3000",
+    // url: "http://localhost:3000",
+    url: "https://chopexpressbackend-8zol.onrender.com/"
   };
   
   export default config;
