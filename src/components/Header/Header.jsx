@@ -5,7 +5,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleView = () => {
-    navigate('/menu')
+    navigate('/category')
   }
 
   return (
