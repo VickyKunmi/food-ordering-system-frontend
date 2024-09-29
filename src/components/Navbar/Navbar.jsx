@@ -63,6 +63,9 @@ const Navbar = ({ setShowLogin }) => {
       X
     </button>
         <ul className="drawer-menu">
+        <Link to="/">
+        <img src={assets.logo} alt="" className="logod" />
+      </Link>
           <li onClick={() => navigateAndCloseDrawer("/")}>Home</li>
           <li onClick={handleSeeAllClick}>Menu</li>
           <li onClick={() => navigateAndCloseDrawer("/contact-us")}>
