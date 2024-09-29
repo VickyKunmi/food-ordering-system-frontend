@@ -69,3 +69,9 @@
   .order-type input[type="radio"]:checked {
     accent-color: rgb(179, 141, 45); 
   }
+
+  @media  (max-width: 750px) {
+    .place-order {
+        display: block;
+    }
+  }
