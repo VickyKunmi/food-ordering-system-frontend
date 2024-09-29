@@ -7,6 +7,81 @@
 .navbar .logo {
   width: 150px;
 }
+.hamburger {
+  display: none;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: rgb(224, 221, 213);
+  box-shadow: 5px 0 5px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-right: 3px solid goldenrod;
+}
+
+
+.close-icon {
+  top: 50px;
+  margin-left: 70%;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  color: rgb(10, 8, 1);
+}
+
+.drawer.open {
+  left: 0; 
+  transform: translateX(0);
+}
+
+
+.drawer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  
+}
+
+.drawer-menu li {
+  padding: 10px 0;
+  cursor: pointer;
+  margin-top: 70px;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar-menu.hidden {
+  display: none;
+}
+
 
 .navbar-menu {
   display: flex;
@@ -116,5 +191,22 @@
   }
   .navbar-menu {
     display: none;
+
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(224, 221, 213);
+    padding: 12px 20px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    z-index: 10;
+    border-radius: 5px;
+    border: 1px solid goldenrod;
+  }
+  .navbar-menu.open {
+    display: flex; 
+  }
+  .hamburger {
+    display: block; 
   }
 }

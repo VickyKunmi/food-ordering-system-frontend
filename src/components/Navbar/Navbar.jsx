@@ -9,6 +9,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,11 +17,25 @@ const Navbar = ({ setShowLogin }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   const handleSeeAllClick = () => {
     navigate("/category");
+    closeDrawer();
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeDrawer = () => {
+    setIsMenuOpen(false);
+  };
+
+  const navigateAndCloseDrawer = (path) => {
+    navigate(path);
+    closeDrawer();
   };
 
   // Set the menu state based on the current route
@@ -35,13 +50,32 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div className="navbar">
+      {!isMenuOpen && (
+        <button className="hamburger" onClick={toggleMenu}>
+          ☰ {/* Hamburger icon */}
+        </button>
+      )}
       <Link to="/">
         <img src={assets.logo} alt="" className="logo" />
       </Link>
-      <ul className="navbar-menu">
+      <div className={`drawer ${isMenuOpen ? "open" : ""}`}>
+      <button className="close-icon" onClick={closeDrawer}>
+      X
+    </button>
+        <ul className="drawer-menu">
+          <li onClick={() => navigateAndCloseDrawer("/")}>Home</li>
+          <li onClick={handleSeeAllClick}>Menu</li>
+          <li onClick={() => navigateAndCloseDrawer("/contact-us")}>
+            Contact Us
+          </li>
+        </ul>
+      </div>
+
+      <ul className={`navbar-menu ${isMenuOpen ? "hidden" : ""}`}>
         <Link
           to="/"
-          onClick={() => setMenu("home")}
+          // onClick={() => setMenu("home")}
+          onClick={() => navigateAndCloseDrawer("/")}
           className={determineActiveMenu() === "home" ? "active" : ""}
         >
           Home
@@ -53,16 +87,11 @@ const Navbar = ({ setShowLogin }) => {
         >
           Menu
         </a>
-        {/* <a
-          href="/myorders"
-          onClick={() => setMenu("myorders")}
-          className={determineActiveMenu() === "order" ? "active" : ""}
-        >
-          Order
-        </a> */}
+
         <a
           href="#footer"
-          onClick={() => setMenu("contact-us")}
+          // onClick={() => setMenu("contact-us")}
+          onClick={() => navigateAndCloseDrawer("/contact-us")}
           className={determineActiveMenu() === "contact-us" ? "active" : ""}
         >
           Contact Us
@@ -76,16 +105,24 @@ const Navbar = ({ setShowLogin }) => {
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
-        {!token ?
-        <button onClick={() => setShowLogin(true)}>sign in</button>
-        : <div className="navbar-profile">
-          <img src={assets.profile_icon} alt="" />
-          <ul className="nav-profile-dropdown">
-            <li onClick={() => navigate("/myorders")}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-            <hr />
-            <li onClick={logout}><img src={assets.logout_icon} alt="" />Logout</li>
-          </ul>
-          </div>}
+        {!token ? (
+          <button onClick={() => setShowLogin(true)}>sign in</button>
+        ) : (
+          <div className="navbar-profile">
+            <img src={assets.profile_icon} alt="" />
+            <ul className="nav-profile-dropdown">
+              <li onClick={() => navigate("/myorders")}>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
+              </li>
+              <hr />
+              <li onClick={logout}>
+                <img src={assets.logout_icon} alt="" />
+                Logout
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

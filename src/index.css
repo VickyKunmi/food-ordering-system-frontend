@@ -32,6 +32,10 @@ a {
   cursor: pointer;
   transition: 0.3s;
 }
+.navbar button:first-child {
+  border: none;
+}
+
 .navbar button:hover {
   background-color: goldenrod ;
 }
