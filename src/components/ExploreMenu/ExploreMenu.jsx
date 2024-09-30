@@ -25,7 +25,7 @@ const ExploreMenu = ({ category, setCategory}) => {
   // Limit the number of menu items to 8
   // const displayedMenuItems = menu_list.slice(0, 8);
   const displayedMenuItems = category_list.slice(0, 8);
-  console.log(category_list, "list")
+  // console.log(category_list, "list")
 
   return (
     <div className="explore-menu" id="explore-menu">

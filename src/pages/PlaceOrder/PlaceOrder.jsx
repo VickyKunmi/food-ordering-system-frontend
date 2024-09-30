@@ -32,14 +32,14 @@ const PlaceOrder = () => {
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
-  useEffect(() => {
-    console.log("Order Type:", orderType);
-    console.log("Address:", address);
-  }, [orderType, address]);
+  // useEffect(() => {
+  //   console.log("Order Type:", orderType);
+  //   console.log("Address:", address);
+  // }, [orderType, address]);
 
   // Central Accra coordinates as the origin point
   const origin = { latitude: 5.6037, longitude: -0.187 };
@@ -86,10 +86,10 @@ const PlaceOrder = () => {
     getTotalCartAmount() - discountAmount + deliveryFee
   ).toFixed(2);
 
-  useEffect(() => {
-    // Debugging the discountAmount
-    console.log("Discount Amount in PlaceOrder:", discountAmount);
-  }, [discountAmount]);
+  // useEffect(() => {
+  //   // Debugging the discountAmount
+  //   console.log("Discount Amount in PlaceOrder:", discountAmount);
+  // }, [discountAmount]);
 
   const placeOrder = async (event) => {
     // console.log("Form submitted");
@@ -121,11 +121,11 @@ const PlaceOrder = () => {
         orderData,
         { headers: { token } }
       );
-      console.log("API Response:", response.data);
+      // console.log("API Response:", response.data);
   
       if (response.data.success) {
         const { authorization_url } = response.data;
-        console.log("Payment URL:", authorization_url);
+        // console.log("Payment URL:", authorization_url);
         window.location.replace(authorization_url);
       } else {
         alert("Error in placing order");
