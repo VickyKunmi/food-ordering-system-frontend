@@ -114,7 +114,7 @@ const Verify = () => {
   return (
     <div className="verify">
       <div className="spinner">
-        Loading...
+        
       </div>
     </div>
   );
